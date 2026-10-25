@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEDA AI | Created by Raghu Gohel</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #05030b;
+    color: white;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    background: #090611;
+    border-right: 1px solid #852cff;
+    padding: 22px 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    font-size: 29px;
+    font-weight: 900;
+    color: #d35aff;
+    text-align: center;
+    margin-bottom: 8px;
+    text-shadow: 0 0 18px #a020ff;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    font-size: 11px;
+    margin-bottom: 30px;
+}
+
+.menu button {
+    width: 100%;
+    text-align: left;
+    padding: 14px 12px;
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: #eee;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.menu button:hover,
+.menu button.active {
+    background: #29103e;
+    border-color: #b238ff;
+    box-shadow: 0 0 12px #6d16a455;
+}
+
+.creator {
+    margin-top: auto;
+    padding: 16px 5px;
+    text-align: center;
+    color: #b9a5d2;
+    font-size: 12px;
+}
+
+.main {
+    flex: 1;
+    padding: 25px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 35px;
+}
+
+.topbar button {
+    background: #171020;
+    color: white;
+    border: 1px solid #63308c;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.hero {
+    text-align: center;
+    padding: 35px 0;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 8vw, 85px);
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-shadow: 0 0 25px #8e24ff;
+}
+
+.hero h1 span {
+    color: #bd40ff;
+}
+
+.hero p {
+    color: #c7b8dc;
+    letter-spacing: 5px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 25px;
+    border: 1px solid #a332ee;
+    padding: 10px 16px;
+    border-radius: 25px;
+    color: #dfbaff;
+    font-size: 12px;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 12px;
+    margin: 20px 0 28px;
+}
+
+.feature {
+    background: #100b19;
+    border: 1px solid #65308c;
+    border-radius: 13px;
+    padding: 17px 10px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    transition: .2s;
+}
+
+.feature:hover {
+    border-color: #d050ff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #9b28ff44;
+}
+
+.feature b {
+    display: block;
+    color: #d58aff;
+    margin-bottom: 8px;
+}
+
+.feature small {
+    color: #aaa;
+}
+
+.chat {
+    min-height: 310px;
+    background: #090810;
+    border: 1px solid #7825a7;
+    border-radius: 20px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    background: #12101b;
+    border: 1px solid #30243e;
+    border-radius: 15px;
+    padding: 18px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.message b {
+    color: #dc68ff;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+}
+
+.suggestions button {
+    background: #15101f;
+    border: 1px solid #3a294b;
+    color: #ddd;
+    padding: 10px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 22px;
+}
+
+.input-area input {
+    flex: 1;
+    min-width: 0;
+    background: #100d18;
+    border: 1px solid #7632a7;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    outline: none;
+}
+
+.send {
+    background: linear-gradient(135deg, #df4bff, #741aff);
+    border: none;
+    color: white;
+    border-radius: 12px;
+    padding: 0 22px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    color: #d56bff;
+    letter-spacing: 5px;
+    font-size: 11px;
+    margin-top: 30px;
+    padding: 15px;
+}
+
+.light {
+    background: #f2edfa;
+    color: #21152c;
+}
+
+.light .sidebar,
+.light .chat,
+.light .message,
+.light .feature {
+    background: #fff;
+    color: #21152c;
+}
+
+@media(max-width:650px) {
+    .sidebar {
+        width: 76px;
+        padding: 15px 7px;
+    }
+
+    .logo {
+        font-size: 12px;
+        overflow-wrap: anywhere;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .menu button {
+        text-align: center;
+        font-size: 10px;
+        padding: 12px 2px;
+        overflow-wrap: anywhere;
+    }
+
+    .main {
+        padding: 13px;
+    }
+
+    .hero {
+        padding: 22px 0;
+    }
+
+    .hero p {
+        letter-spacing: 2px;
+    }
+
+    .chat {
+        padding: 12px;
+    }
+
+    .creator {
+        font-size: 9px;
+        overflow-wrap: anywhere;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<aside class="sidebar">
+    <div class="logo">♛ VEDA AI</div>
+    <div class="subtitle">YOUR PERSONAL AI ASSISTANT</div>
+
+    <nav class="menu">
+        <button class="active" onclick="showHome()">⌂ Home</button>
+        <button onclick="focusChat()">💬 AI Chat</button>
+        <button onclick="showFeature('Image Generator')">▧ Image Generator</button>
+        <button onclick="showFeature('Code Helper')">&lt;/&gt; Code Helper</button>
+        <button onclick="showFeature('Web Search')">◎ Web Search</button>
+        <button onclick="showFeature('Useful Tools')">⚒ Useful Tools</button>
+        <button onclick="showFeature('Study Help')">🎓 Study Help</button>
+        <button onclick="showFeature('Chat History')">◷ History</button>
+        <button onclick="showFeature('Settings')">⚙ Settings</button>
+    </nav>
+
+    <div class="creator">POWERED BY CREATIVITY</div>
+</aside>
+
+<main class="main">
+
+    <div class="topbar">
+        <button onclick="toggleTheme()">☾ Dark Mode</button>
+    </div>
+
+    <section class="hero">
+        <h1>VEDA <span>AI</span></h1>
+        <p>ASK ANYTHING, CREATE ANYTHING</p>
+        <div class="badge">✦ POWERED BY AI &nbsp; • &nbsp; BUILT FOR CREATORS</div>
+    </section>
+
+    <section class="features">
+        <button class="feature" onclick="focusChat()">
+            <b>💬 AI Chat</b><small>Ask anything</small>
+        </button>
+
+        <button class="feature" onclick="showFeature('Image Generator')">
+            <b>🎨 Image Generator</b><small>Create images</small>
+        </button>
+
+        <button class="feature" onclick="showFeature('Code Helper')">
+            <b>⌘ Code Helper</b><small>Write code</small>
+        </button>
+
+        <button class="feature" onclick="showFeature('Web Search')">
+            <b>🌐 Web Search</b><small>Find information</small>
+        </button>
+
+        <button class="feature" onclick="showFeature('Useful Tools')">
+           
